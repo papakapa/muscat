@@ -1,0 +1,5 @@
+export enum AuthStages {
+  PENDING = 'PENDING',
+  AUTHORIZED = 'AUTHORIZED',
+  NOT_AUTHORIZED = 'NOT_AUTHORIZED'
+}
