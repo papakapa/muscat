@@ -18,6 +18,14 @@ export class AuthService {
     return null;
   }
 
+  async checkUser(login: string) {
+    const user = await this.userService.findUserByLogin(login);
+    if (user) {
+      return {isExist: true};
+    }
+    return {isExist: false};
+  }
+
   async login(user: any) {
     const payload = {login: user.login, password: user.password};
     return {
