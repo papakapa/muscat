@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { checkLogin, setSignStage } from '../../redux/auth/auth.actions';
+import { SignStages } from '../../core/enums/sign-stages.enum';
 
 const SignInFirstStep = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const SignInFirstStep = () => {
     dispatch(checkLogin(data.login));
   };
 
-  const onSignUp = () => dispatch(setSignStage('signUp'));
+  const onSignUp = () => dispatch(setSignStage(SignStages.SIGN_UP));
 
   const {register, handleSubmit} = useForm<{login: string}>();
 

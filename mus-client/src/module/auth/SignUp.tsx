@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { IUserToCreate } from '../../core/interfaces/IUser';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../redux/auth/auth.actions';
+import { clientRoutes } from '../../core/constants/client.routes';
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -93,10 +94,10 @@ const SignUp = () => {
               />
             </div>
             <div className="mb-3 mt-4 d-grid gap-2 mx-auto">
-              <button type="submit" className="btn btn-outline-dark mb-2" >Зарегестрироваться</button>
+              <button type="submit" className="btn btn-outline-dark mb-2" >Зарегистрироваться</button>
             </div>
           </SignUpForm>
-          <StyledSignUpLink>Есть аккаунт в MusCat?<NavLink to='/auth/signIn'>Войти</NavLink></StyledSignUpLink>
+          <StyledSignUpLink>Есть аккаунт в MusCat?<NavLink to={clientRoutes.AUTH_SIGN_IN}>Войти</NavLink></StyledSignUpLink>
         </StyledSignUpBlock>
       </StyledSignUpWrapper>
     </StyledSignUp>

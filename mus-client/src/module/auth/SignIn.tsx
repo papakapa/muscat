@@ -9,14 +9,15 @@ import SignInFirstStep from './SignInFirstStep';
 import SignInSecondStep from './SignInSecondStep';
 import { useSelector } from 'react-redux';
 import { getSignInStage } from '../../redux/auth/auth.selectors';
+import { clientRoutes } from '../../core/constants/client.routes';
 
 const SignIn = () => {
   const signInStage = useSelector(getSignInStage);
 
   return (
     <>
-      {signInStage === 1 && <Redirect to={'/auth/signIn/firstStep'} />}
-      {signInStage === 2 && <Redirect to={'/auth/signIn/secondStep'} />}
+      {signInStage === 1 && <Redirect to={clientRoutes.AUTH_SIGN_IN_FIRST} />}
+      {signInStage === 2 && <Redirect to={clientRoutes.AUTH_SIGN_IN_SECOND} />}
       <StyledSignIn>
         <StyledSignInBackGround/>
         <StyledSignWrapper>
@@ -28,10 +29,10 @@ const SignIn = () => {
                   <span>MusCat</span>
                 </StyledSignHeader>
                 <Switch>
-                  <Route path='/auth/signIn/firstStep'>
+                  <Route path={clientRoutes.AUTH_SIGN_IN_FIRST}>
                     <SignInFirstStep />
                   </Route>
-                  <Route path='/auth/signIn/secondStep'>
+                  <Route path={clientRoutes.AUTH_SIGN_IN_SECOND}>
                     <SignInSecondStep />
                   </Route>
                 </Switch>

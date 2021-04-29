@@ -10,6 +10,9 @@ import { IUserToCreate } from '../../core/interfaces/IUser';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '../index';
 import axios from 'axios';
+import { AuthStages } from '../../core/constants/auth-stages.constants';
+import { SignStages } from '../../core/enums/sign-stages.enum';
+import { backRoutes } from '../../core/constants/back.routes';
 
 export const setAuthStage = (authStage: string): AuthTypes => ({type: SET_AUTH_STAGE, payload: authStage});
 export const setSignStage = (signStage: string): AuthTypes => ({type: SET_SIGN_STAGE, payload: signStage});
@@ -19,7 +22,7 @@ export const setCurrentUser = (user: IUserToCreate): AuthTypes => ({type: SET_CU
 
 export const signUp = (user: IUserToCreate): ThunkAction<any, RootState, any, any> => async dispatch => {
   console.log(user);
-  const res = await axios.post('http://localhost:7777/auth/signUp', {
+  const res = await axios.post(backRoutes.signUp, {
     user: {
       firstName: user.firstName,
       secondName: user.secondName,
@@ -29,12 +32,12 @@ export const signUp = (user: IUserToCreate): ThunkAction<any, RootState, any, an
     }
   });
   if (res.status !== 500) {
-   dispatch(setSignStage('signIn'));
+   dispatch(setSignStage(SignStages.SIGN_IN));
   }
 };
 
 export const checkLogin = (login: string): ThunkAction<any, RootState, any, any> => async dispatch => {
-  const res = await axios.post('http://localhost:7777/auth/check', {login: login});
+  const res = await axios.post(backRoutes.validateLogin, {login: login});
   if (res.data) {
     if (res.data.isExist) {
       dispatch(setCurrentLogin(login));
@@ -44,40 +47,40 @@ export const checkLogin = (login: string): ThunkAction<any, RootState, any, any>
 };
 
 export const  signIn = (login: string, password: string): ThunkAction<any, any, any, any> => async dispatch => {
-  const res = await axios.post('http://localhost:7777/auth/signIn',{login: login, password: password});
+  const res = await axios.post(backRoutes.signIn,{login: login, password: password});
   if (res.data.access_token) {
     localStorage.setItem('token', res.data.access_token);
     dispatch(setSignInStage(1));
-    dispatch(setAuthStage('AUTHORIZED'));
+    dispatch(setAuthStage(AuthStages.AUTHORIZED));
   }
   console.log(res);
   console.log(res.data);
 }
 
 export const validateToken = (): ThunkAction<any, RootState, any, any> => async dispatch => {
-  dispatch(setAuthStage('PENDING'));
+  dispatch(setAuthStage(AuthStages.PENDING));
   const token = localStorage.getItem('token');
   if (!token) {
-    dispatch(setAuthStage('NOT_AUTHORIZED'));
+    dispatch(setAuthStage(AuthStages.NOT_AUTHORIZED));
   } else {
     try {
-      const res = await axios.get('http://localhost:7777/auth/isAuth', {
+      const res = await axios.get(backRoutes.validateToken, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
       if (res.status === 200 && res.data.login) {
         dispatch(setCurrentLogin(res.data.login));
-        dispatch(setAuthStage('AUTHORIZED'));
+        dispatch(setAuthStage(AuthStages.AUTHORIZED));
       } else {
         localStorage.removeItem('token');
         dispatch(setCurrentLogin(''));
-        dispatch(setAuthStage('NOT_AUTHORIZED'));
+        dispatch(setAuthStage(AuthStages.NOT_AUTHORIZED));
       }
     } catch (e) {
       localStorage.removeItem('token');
       dispatch(setCurrentLogin(''));
-      dispatch(setAuthStage('NOT_AUTHORIZED'));
+      dispatch(setAuthStage(AuthStages.NOT_AUTHORIZED));
     }
   }
 };

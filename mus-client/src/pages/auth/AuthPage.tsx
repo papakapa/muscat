@@ -4,19 +4,21 @@ import SignIn from '../../module/auth/SignIn';
 import SignUp from '../../module/auth/SignUp';
 import { useSelector } from 'react-redux';
 import { getSignStage } from '../../redux/auth/auth.selectors';
+import { SignStages } from '../../core/enums/sign-stages.enum';
+import { clientRoutes } from '../../core/constants/client.routes';
 
 const AuthPage = () => {
   const signStage = useSelector(getSignStage);
 
   return (
     <>
-    {signStage === 'signUp' && <Redirect to='/auth/signUp' /> }
-    {signStage === 'signIn' && <Redirect to='/auth/signIn' /> }
+    {signStage === SignStages.SIGN_UP && <Redirect to={clientRoutes.AUTH_SIGN_UP} /> }
+    {signStage === SignStages.SIGN_IN && <Redirect to={clientRoutes.AUTH_SIGN_IN} /> }
     <Switch>
-      <Route path='/auth/signIn'>
+      <Route path={clientRoutes.AUTH_SIGN_IN}>
         <SignIn />
       </Route>
-      <Route path='/auth/signUp'>
+      <Route path={clientRoutes.AUTH_SIGN_IN}>
         <SignUp />
       </Route>
     </Switch>

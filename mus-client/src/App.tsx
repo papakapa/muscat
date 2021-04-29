@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { validateToken } from './redux/auth/auth.actions';
 import HomePage from './pages/home/HomePage';
 import { getAuthStage } from './redux/auth/auth.selectors';
+import { AuthStages } from './core/constants/auth-stages.constants';
+import { clientRoutes } from './core/constants/client.routes';
 
 function App() {
   const dispatch = useDispatch();
@@ -16,13 +18,13 @@ function App() {
 
   return (
     <div >
-      {authStage === 'NOT_AUTHORIZED' && <Redirect to='/auth'/>}
-      {authStage === 'AUTHORIZED' && <Redirect to='/home'/>}
+      {authStage === AuthStages.NOT_AUTHORIZED && <Redirect to={clientRoutes.AUTH_PAGE}/>}
+      {authStage === AuthStages.AUTHORIZED && <Redirect to={clientRoutes.HOME_PAGE}/>}
       <Switch>
-        <Route path='/auth'>
+        <Route path={clientRoutes.AUTH_PAGE}>
           <AuthPage />
         </Route>
-        <Route path='/home'>
+        <Route path={clientRoutes.HOME_PAGE}>
           <HomePage />
         </Route>
       </Switch>
