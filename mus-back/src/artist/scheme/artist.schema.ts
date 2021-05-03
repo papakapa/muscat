@@ -9,23 +9,23 @@ export type ArtistDocument = Artist & Document;
 
 @Schema()
 export class Artist {
-  @Prop({unique: true})
-  nickName: string
+  @Prop({ unique: true })
+  nickName: string;
 
   @Prop()
-  avatar: string
+  avatar: string;
 
   @Prop({
     type: Types.ObjectId,
-    ref: `${Track.name}`
+    ref: `${Track.name}`,
   })
-  tracks: ITrack[]
+  tracks: ITrack[];
 
   @Prop({
     type: Types.ObjectId,
-    ref: `${Album.name}`
+    ref: `${Album.name}`,
   })
-  albums: IAlbum[]
+  albums: IAlbum[];
 }
 
 export const ArtistSchema = SchemaFactory.createForClass(Artist);

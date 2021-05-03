@@ -4,8 +4,7 @@ import { ArtistService } from './artist.service';
 
 @Controller('artist')
 export class ArtistController {
-  constructor(private readonly artistService: ArtistService) {
-  }
+  constructor(private readonly artistService: ArtistService) {}
 
   @Post('create')
   async createNewArtist(@Body('artist') artist: CreateArtistDto) {

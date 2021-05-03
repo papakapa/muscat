@@ -5,10 +5,10 @@ import { CreateUserDto } from '../user/dto/create-user.dto';
 
 @Injectable()
 export class AuthService {
- constructor(
-   private userService: UserService,
-   private jwtService: JwtService,
- ) {}
+  constructor(
+    private userService: UserService,
+    private jwtService: JwtService,
+  ) {}
 
   async validateUser(login: string, pass: string): Promise<any> {
     const user = await this.userService.findUserByLogin(login);
@@ -21,17 +21,17 @@ export class AuthService {
   async checkUser(login: string) {
     const user = await this.userService.findUserByLogin(login);
     if (user) {
-      return {isExist: true};
+      return { isExist: true };
     }
-    return {isExist: false};
+    return { isExist: false };
   }
 
   async login(user: any) {
-    const payload = {login: user.login, password: user.password};
+    const payload = { login: user.login, password: user.password };
     return {
       access_token: this.jwtService.sign(payload),
-      login: user.login
-    }
+      login: user.login,
+    };
   }
 
   async createUser(user: CreateUserDto) {

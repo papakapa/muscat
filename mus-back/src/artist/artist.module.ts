@@ -5,7 +5,9 @@ import { ArtistController } from './artist.controller';
 import { ArtistService } from './artist.service';
 
 @Module({
-  imports: [MongooseModule.forFeature([{name: Artist.name, schema: ArtistSchema}])],
+  imports: [
+    MongooseModule.forFeature([{ name: Artist.name, schema: ArtistSchema }]),
+  ],
   controllers: [ArtistController],
   providers: [ArtistService],
   exports: [ArtistService],
