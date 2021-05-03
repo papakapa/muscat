@@ -1,3 +1,6 @@
+import { ITrack } from '../../track/interfaces/track.interface';
+import { IPlaylist } from '../../playlist/interafces/playlist.interfaces';
+
 export class ExceptedUserDto {
   readonly _id: string
   readonly firstName: string
@@ -5,4 +8,6 @@ export class ExceptedUserDto {
   readonly login: string
   readonly email: string
   readonly password: string
+  readonly tracks: ITrack[]
+  readonly playlist: IPlaylist[]
 }
