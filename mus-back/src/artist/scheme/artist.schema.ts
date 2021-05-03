@@ -9,8 +9,11 @@ export type ArtistDocument = Artist & Document;
 
 @Schema()
 export class Artist {
-  @Prop()
+  @Prop({unique: true})
   nickName: string
+
+  @Prop()
+  avatar: string
 
   @Prop({
     type: Types.ObjectId,
