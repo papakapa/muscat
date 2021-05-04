@@ -8,12 +8,17 @@ import HomePage from './pages/home/HomePage';
 import { getAuthStage } from './redux/auth/auth.selectors';
 import { AuthStages } from './core/constants/auth-stages.constants';
 import { clientRoutes } from './core/constants/client.routes';
+import {getAllTrackFromDb} from "./redux/track/track.actions";
 
 function App() {
   const dispatch = useDispatch();
   const authStage = useSelector(getAuthStage);
   useEffect(() => {
     dispatch(validateToken());
+  },[dispatch]);
+
+  useEffect(() => {
+    dispatch(getAllTrackFromDb());
   },[dispatch]);
 
   return (
