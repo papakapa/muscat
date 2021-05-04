@@ -1,4 +1,4 @@
 export enum SignStages {
-  SIGN_IN = 'SIGN_IN',
-  SIGN_UP = 'SIGN_UP',
+  SIGN_IN = 'signIn',
+  SIGN_UP = 'signUp',
 }
