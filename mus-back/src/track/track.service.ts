@@ -12,6 +12,10 @@ export class TrackService {
     private artistService: ArtistService,
   ) {}
 
+  async getAllTracks() {
+    return this.trackModel.find().exec();
+  }
+
   async addTack(track: ITrackToCreate) {
     const newTrack = new this.trackModel(track);
     const isArtistExist = await this.artistService.findArtist(track.artist);

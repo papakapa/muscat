@@ -11,6 +11,11 @@ const trackReducer = (state = initialState, action: TrackTypes) => {
         ...state,
         tracks: [...state.tracks, action.payload]
       }
+    case "SET_TRACKS":
+      return {
+        ...state,
+        tracks: action.payload
+      }
     default:
       return state
   }
