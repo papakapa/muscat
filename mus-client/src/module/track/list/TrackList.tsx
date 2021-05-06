@@ -9,7 +9,7 @@ const TrackList = () => {
 
   const rerenderTracks = () => {
     if (tracks.length) {
-      return tracks.map(el => <Track track={el} key={el._id}/>)
+      return tracks.map(el => <Track track={el} key={el._id} order={tracks}/>)
     }
     return null;
   };

@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import Uploader from '../../module/upload/Uploader';
 import TrackList from "../../module/track/list/TrackList";
+import Player from '../../module/player/Player';
 
 const HomePage = () => {
   return (
@@ -19,6 +20,7 @@ const HomePage = () => {
           <TrackList />
         </Route>
       </Switch>
+      <Player />
     </div>
   );
 };
