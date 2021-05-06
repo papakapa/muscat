@@ -10,6 +10,7 @@ import {
 } from "../../redux/player/player.selectors";
 import {setCurrentTrack, setIsPlaying, setPLayerTrackState} from "../../redux/player/player.actions";
 import {PlayerStateEnum} from "../../core/enums/player-state.enum";
+import {StyledProgress, StyledProgressBar } from "./StyledPlayer";
 
 let audio = new Audio();
 
@@ -60,9 +61,33 @@ const Player = () => {
     dispatch(setPLayerTrackState(PlayerStateEnum.STARTED));
   },[dispatch, order, currentIndex, isFirst]);
 
+  const onProgressClick = (event: any) => {
+    let line = document.getElementById('pb');
+    if (line) {
+      let x = event.pageX - line.offsetLeft;
+      let progress = x / line.offsetWidth * 100;
+      audio.currentTime = audio.duration * (progress / 100);
+    }
+  };
+
   useEffect(() => {
     isPlaying ? onPlay() : onStop();
   }, [track,isPlaying, onPlay, onStop]);
+
+  useEffect(() => {
+    trackState === PlayerStateEnum.ENDED && onNext();
+  }, [trackState, onNext]);
+
+  audio.addEventListener('timeupdate', () => {
+    let pos = audio.currentTime / audio.duration;
+    const progress = document.getElementById('pg');
+    if (progress) {
+      progress.style.width = pos * 100 + '%';
+    }
+    if (audio.ended) {
+      dispatch(setPLayerTrackState(PlayerStateEnum.ENDED));
+    }
+  });
 
   if (!track) return null;
 
@@ -78,9 +103,9 @@ const Player = () => {
                      : <button onClick={onPlay}>play</button>}
           <button onClick={onNext}>next</button>
         </div>
-        <div>
-          <div />
-        </div>
+        <StyledProgressBar id='pb' onClick={onProgressClick}>
+          <StyledProgress id='pg'/>
+        </StyledProgressBar>
       </div>
     </div>
   );
