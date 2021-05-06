@@ -3,7 +3,8 @@
 ##Todo
 
 - [ ] Styled App 
-- [ ] Player volume, progress
+- [ ] Player volume
+- [x] Player Progress Bar
 - [ ] Playlist
 - [ ] Liked Tracks
 - [ ] Search
