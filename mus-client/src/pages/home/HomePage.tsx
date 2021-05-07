@@ -7,6 +7,7 @@ import PlaylistList from "../../module/playlists/PlaylistList";
 import CreatePlaylist from "../../module/playlists/CreatePlaylist";
 import ArtistList from "../../module/artist/ArtistList";
 import ArtistInfo from "../../module/artist/ArtistInfo";
+import AlbumInfo from "../../module/album/AlbumInfo";
 
 const HomePage = () => {
   return (
@@ -35,6 +36,7 @@ const HomePage = () => {
           <ArtistList />
         </Route>
         <Route path='/home/artist/:id' component={ArtistInfo} />
+        <Route path='/home/album/:id' component={AlbumInfo} />
       </Switch>
       <Player />
     </div>

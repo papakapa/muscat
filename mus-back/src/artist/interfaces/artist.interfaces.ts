@@ -10,7 +10,7 @@ export interface IArtist {
 }
 
 export interface ICreateArtist {
-  nickName: string;
+  nickNames: string;
   avatar: string;
   tracks?: ITrack[];
   albums?: IAlbum[];

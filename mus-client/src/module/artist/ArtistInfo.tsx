@@ -4,6 +4,8 @@ import {getAllArtists} from "../../redux/artist/artist.selector";
 import Track from "../track/components/Track";
 import {ITrack} from "../../core/interfaces/ITrack";
 import {getAllTracks} from "../../redux/track/track.selectors";
+import {IAlbum} from "../../core/interfaces/IAlbum";
+import Album from "../album/Album";
 
 const ArtistInfo = (props : any) => {
   const artists = useSelector(getAllArtists);
@@ -24,6 +26,15 @@ const ArtistInfo = (props : any) => {
     return null;
   }, [artist, tracks]);
 
+  const rerenderAlbums = useCallback(() => {
+    if (artist) {
+      if (artist.albums && artist.albums.length) {
+        return artist.albums.map((el: IAlbum) => <Album album={el} key={el._id + 'album'}/>);
+      }
+      return null;
+    }
+    return null;
+  }, [artist]);
   return (
     <div>
       <div>
@@ -34,6 +45,9 @@ const ArtistInfo = (props : any) => {
       </div>
       <div>
         {rerenderTracks()}
+      </div>
+      <div>
+        {rerenderAlbums()}
       </div>
       <div>
 

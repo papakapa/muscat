@@ -21,6 +21,6 @@ export class ArtistService {
 
   async findArtist(artistName: string) {
     const artist = await this.artistModel.findOne({ nickName: artistName });
-    return !!artist;
+    return artist ? artist._id : false;
   }
 }

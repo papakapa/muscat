@@ -1,4 +1,4 @@
-import { ITrack } from '../../track/interfaces/track.interface';
+import { ITrack } from "./ITrack";
 
 export interface IAlbum {
   _id: string;
