@@ -5,5 +5,8 @@ export const backRoutes = {
   signUp: 'http://localhost:7777/auth/signUp',
   createArtist: 'http://localhost:7777/artist/create',
   createTrack: 'http://localhost:7777/track/create',
-  getTracks: 'http://localhost:7777/track/all'
+  getTracks: 'http://localhost:7777/track/all',
+  getLikedTracks: 'http://localhost:7777/track/likedTracks',
+  addLikedTrack: 'http://localhost:7777/track/like',
+  deleteLikedTrack: 'http://localhost:7777/track/unlike'
 }

@@ -10,6 +10,9 @@ import {
   setPLayerTrackState
 } from "../../../redux/player/player.actions";
 import {PlayerStateEnum} from "../../../core/enums/player-state.enum";
+import {getLikedTracks} from "../../../redux/track/track.selectors";
+import {getCurrentLogin} from "../../../redux/auth/auth.selectors";
+import {addLikeTrack, deleteLikedTrack} from "../../../redux/track/track.actions";
 
 interface TrackProps {
   track: ITrack;
@@ -20,6 +23,8 @@ const Track: React.FC<TrackProps> = ({track, order}) => {
   const dispatch = useDispatch();
   const currentId = useSelector(getCurrentTrackId);
   const isCurrentPlaying = useSelector(getIsPlaying);
+  const likedTracks = useSelector(getLikedTracks);
+  const currentLogin = useSelector(getCurrentLogin);
 
   const getPoster = useCallback(() => track.poster, [track]);
   const getName = useCallback(() => track.title, [track]);
@@ -32,6 +37,7 @@ const Track: React.FC<TrackProps> = ({track, order}) => {
     }
     return false;
   },[isEqualCurrent, isCurrentPlaying]);
+  const isLiked = useMemo(() => likedTracks.findIndex(el => el._id === track._id) !== -1, [likedTracks, track]);
   const onPlay = () => {
     if (!isEqualCurrent) {
       dispatch(setCurrentTrack(track));
@@ -45,6 +51,11 @@ const Track: React.FC<TrackProps> = ({track, order}) => {
   const onStop = () => {
     dispatch(setIsPlaying(false));
   };
+  const onLike = () => {
+    dispatch(addLikeTrack(track, currentLogin, likedTracks));
+  };
+
+  const onUnLike = () => dispatch(deleteLikedTrack(track, currentLogin, likedTracks));
 
   return (
     <StyledTrack>
@@ -59,7 +70,10 @@ const Track: React.FC<TrackProps> = ({track, order}) => {
           <StyledTrackName>{getAuthor()}</StyledTrackName>
         </StyledTrackTitle>
       </StyledTrackInfo>
-      <div></div>
+      <div>
+        {!isLiked && <button onClick={onLike}>like</button>}
+        {isLiked && <button onClick={onUnLike}>unlike</button>}
+      </div>
     </StyledTrack>
   );
 };

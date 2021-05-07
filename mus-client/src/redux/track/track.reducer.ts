@@ -1,7 +1,8 @@
 import {TrackState, TrackTypes} from "./track.types";
 
 const initialState: TrackState = {
-  tracks: []
+  tracks: [],
+  likedTracks: [],
 };
 
 const trackReducer = (state = initialState, action: TrackTypes) => {
@@ -15,6 +16,11 @@ const trackReducer = (state = initialState, action: TrackTypes) => {
       return {
         ...state,
         tracks: action.payload
+      }
+    case "SET_LIKED_TRACKS":
+      return {
+        ...state,
+        likedTracks: action.payload
       }
     default:
       return state
