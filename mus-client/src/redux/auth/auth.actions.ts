@@ -13,6 +13,7 @@ import axios from 'axios';
 import { AuthStages } from '../../core/constants/auth-stages.constants';
 import { SignStages } from '../../core/enums/sign-stages.enum';
 import { backRoutes } from '../../core/constants/back.routes';
+import {setLikedTracks} from "../track/track.actions";
 
 export const setAuthStage = (authStage: string): AuthTypes => ({type: SET_AUTH_STAGE, payload: authStage});
 export const setSignStage = (signStage: string): AuthTypes => ({type: SET_SIGN_STAGE, payload: signStage});
@@ -52,6 +53,8 @@ export const  signIn = (login: string, password: string): ThunkAction<any, any, 
     localStorage.setItem('token', res.data.access_token);
     dispatch(setSignInStage(1));
     dispatch(setAuthStage(AuthStages.AUTHORIZED));
+    const response  = await axios.post(backRoutes.getLikedTracks, {login: login});
+    response.data ? dispatch(setLikedTracks(response.data)): dispatch(setLikedTracks([]));
   }
   console.log(res);
   console.log(res.data);
@@ -72,6 +75,8 @@ export const validateToken = (): ThunkAction<any, RootState, any, any> => async 
       if (res.status === 200 && res.data.login) {
         dispatch(setCurrentLogin(res.data.login));
         dispatch(setAuthStage(AuthStages.AUTHORIZED));
+        const response  = await axios.post(backRoutes.getLikedTracks, {login: res.data.login});
+        response.data ? dispatch(setLikedTracks(response.data)): dispatch(setLikedTracks([]));
       } else {
         localStorage.removeItem('token');
         dispatch(setCurrentLogin(''));

@@ -10,6 +10,10 @@ export class ArtistService {
     @InjectModel(Artist.name) private artistModel: Model<ArtistDocument>,
   ) {}
 
+  async getAllArtists() {
+    return this.artistModel.find().exec();
+  }
+
   async createArtist(artist: CreateArtistDto) {
     const newArtist = new this.artistModel(artist);
     return newArtist.save();
@@ -17,6 +21,6 @@ export class ArtistService {
 
   async findArtist(artistName: string) {
     const artist = await this.artistModel.findOne({ nickName: artistName });
-    return !!artist;
+    return artist ? artist._id : false;
   }
 }

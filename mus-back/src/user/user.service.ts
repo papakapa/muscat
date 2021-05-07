@@ -6,11 +6,10 @@ import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {
-  }
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async findUserByLogin(login: string): Promise<User | undefined> {
-    return  this.userModel.findOne({login: login});
+    return this.userModel.findOne({ login: login });
   }
 
   async createUser(user: CreateUserDto): Promise<User> {

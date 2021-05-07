@@ -5,12 +5,16 @@ import authReducer from './auth/auth.reducer';
 import artistReducer from './artist/artist.reducer';
 import trackReducer from './track/track.reducer';
 import playerReducer from "./player/player.reducer";
+import playlistReducer from "./playlist/playlists.reducer";
+import albumReducer from "./album/album.reducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   artist: artistReducer,
   tracks: trackReducer,
-  player: playerReducer
+  player: playerReducer,
+  playlists: playlistReducer,
+  albums: albumReducer,
 });
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

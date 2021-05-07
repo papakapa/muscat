@@ -11,25 +11,26 @@ const TrackUploader = () => {
   const [trackLink, setTrackLink] = useState('');
   const [posterFile, setPosterFile] = useState('');
   const [posterLink, setPosterLink] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isTrackLoading, setIsTrackLoading] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(false);
 
   const {handleSubmit, register} = useForm();
 
   const handleOnTrackLoad = async (e: any) => {
     const track = e.target.files[0];
-    await uploadContent(track, setTrackLink, 'tracks', setIsLoading);
+    await uploadContent(track, setTrackLink, 'tracks', setIsTrackLoading);
     setTrackFile(track);
   };
 
   const handleOnPosterLoad = async (e: any) => {
     const image = e.target.files[0];
-    await uploadContent(image, setPosterLink, 'posters', setIsLoading);
+    await uploadContent(image, setPosterLink, 'posters', setIsImageLoading);
     setPosterFile(image);
   };
 
   const onTrackAdd = (data: any) => {
     console.log(data);
-    if (posterFile === '' || trackFile === '' || isLoading) {
+    if (posterFile === '' || trackFile === '' || isImageLoading || isTrackLoading) {
       return;
     } else {
       dispatch(addTrackToDb({
@@ -60,7 +61,7 @@ const TrackUploader = () => {
           autoComplete='off'
           placeholder='track artist'
         />
-        <button type='submit'>Add track</button>
+        <button type='submit' disabled={isTrackLoading || isImageLoading}>Add track</button>
       </form>
     </div>
   );

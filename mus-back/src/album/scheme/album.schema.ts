@@ -10,6 +10,9 @@ export class Album {
   @Prop({ unique: true })
   title: string
 
+  @Prop()
+  poster: string;
+
   @Prop({
     type: Types.ObjectId,
     ref: `${Track.name}`
