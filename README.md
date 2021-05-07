@@ -5,9 +5,9 @@
 - [ ] Styled App 
 - [ ] Player volume
 - [x] Player Progress Bar
-- [ ] Playlist
-- [ ] Liked Tracks
+- [x] Playlist
+- [x] Liked Tracks
 - [ ] Search
 - [ ] User Cabinet 
-- [ ] Artist
-- [ ] Albums
+- [x] Artist
+- [x] Albums
