@@ -10,6 +10,7 @@ import { AuthStages } from './core/constants/auth-stages.constants';
 import { clientRoutes } from './core/constants/client.routes';
 import {getAllTrackFromDb} from "./redux/track/track.actions";
 import {getPlaylistsAPI} from "./redux/playlist/playlists.actions";
+import {getArtistAPI} from "./redux/artist/artist.actions";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,10 @@ function App() {
 
   useEffect(() => {
     dispatch(getPlaylistsAPI());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getArtistAPI());
   }, [dispatch]);
 
   return (

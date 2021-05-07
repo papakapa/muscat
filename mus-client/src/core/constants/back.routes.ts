@@ -4,6 +4,7 @@ export const backRoutes = {
   signIn: 'http://localhost:7777/auth/signIn',
   signUp: 'http://localhost:7777/auth/signUp',
   createArtist: 'http://localhost:7777/artist/create',
+  getArtists: 'http://localhost:7777/artist/all',
   createTrack: 'http://localhost:7777/track/create',
   getTracks: 'http://localhost:7777/track/all',
   getLikedTracks: 'http://localhost:7777/track/likedTracks',

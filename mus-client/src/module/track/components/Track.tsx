@@ -40,9 +40,11 @@ const Track: React.FC<TrackProps> = ({track, order}) => {
   const isLiked = useMemo(() => likedTracks.findIndex(el => el._id === track._id) !== -1, [likedTracks, track]);
   const onPlay = () => {
     if (!isEqualCurrent) {
+      console.log('here', isEqualCurrent);
       dispatch(setCurrentTrack(track));
       dispatch(setPLayerTrackState(PlayerStateEnum.STARTED));
     } else {
+      console.log('here2', isEqualCurrent, track._id, currentId);
       dispatch(setPLayerTrackState(PlayerStateEnum.PLAYING));
     }
     dispatch(setCurrentOrder(order));

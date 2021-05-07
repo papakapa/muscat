@@ -10,6 +10,10 @@ export class ArtistService {
     @InjectModel(Artist.name) private artistModel: Model<ArtistDocument>,
   ) {}
 
+  async getAllArtists() {
+    return this.artistModel.find().exec();
+  }
+
   async createArtist(artist: CreateArtistDto) {
     const newArtist = new this.artistModel(artist);
     return newArtist.save();

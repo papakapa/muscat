@@ -11,6 +11,11 @@ const artistReducer = (state = initialState, action: ArtistTypes) => {
         ...state,
         artists: [...state.artists, action.payload]
       }
+    case "SET_ARTISTS":
+      return {
+        ...state,
+        artists: action.payload
+      }
     default:
       return state
   }
