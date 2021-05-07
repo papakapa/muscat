@@ -8,5 +8,7 @@ export const backRoutes = {
   getTracks: 'http://localhost:7777/track/all',
   getLikedTracks: 'http://localhost:7777/track/likedTracks',
   addLikedTrack: 'http://localhost:7777/track/like',
-  deleteLikedTrack: 'http://localhost:7777/track/unlike'
+  deleteLikedTrack: 'http://localhost:7777/track/unlike',
+  getPlaylists: 'http://localhost:7777/playlist/all',
+  createPlaylist: 'http://localhost:7777/playlist/create'
 }
