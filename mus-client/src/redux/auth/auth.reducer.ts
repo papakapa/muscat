@@ -3,7 +3,14 @@ import { AuthState, AuthTypes } from './auth.types';
 const initialState: AuthState = {
   authStage: '',
   currentLogin: '',
-  currentUser: {},
+  currentUser: {
+    _id: '',
+    email: '',
+    firstName: '',
+    login: '',
+    password: '',
+    secondName: ''
+  },
   signInStage: 1,
   signStage: 'signIn'
 };

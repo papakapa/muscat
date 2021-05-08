@@ -3,6 +3,7 @@ export const backRoutes = {
   validateLogin: 'http://localhost:7777/auth/check',
   signIn: 'http://localhost:7777/auth/signIn',
   signUp: 'http://localhost:7777/auth/signUp',
+  getUser: 'http://localhost:7777/auth/user',
   createArtist: 'http://localhost:7777/artist/create',
   getArtists: 'http://localhost:7777/artist/all',
   createTrack: 'http://localhost:7777/track/create',

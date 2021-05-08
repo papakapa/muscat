@@ -1,4 +1,4 @@
-import { IUserToCreate } from '../../core/interfaces/IUser';
+import {IUser } from '../../core/interfaces/IUser';
 
 export const SET_SIGN_STAGE = 'SET_SIGN_STAGE';
 export const SET_AUTH_STAGE = 'SET_AUTH_STAGE';
@@ -28,7 +28,7 @@ interface SET_LOGIN {
 
 interface SET_USER {
   type: typeof SET_CURRENT_USER,
-  payload: IUserToCreate
+  payload: IUser
 }
 
 export interface AuthState {
@@ -36,7 +36,7 @@ export interface AuthState {
   signInStage: number;
   authStage: string;
   currentLogin: string;
-  currentUser: IUserToCreate | {};
+  currentUser: IUser;
 }
 
 export type AuthTypes = SET_LOGIN | SET_STAGE_AUTH | SET_STAGE_SIGN | SET_STAGE_SIGN_IN | SET_USER;

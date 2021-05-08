@@ -19,6 +19,11 @@ export class AuthController {
     return this.authService.createUser(user);
   }
 
+  @Post('user')
+  async getUser(@Body('login') login: string) {
+    return this.authService.getUser(login);
+  }
+
   @UseGuards(LocalAuthGuard)
   @Post('signIn')
   async onLogin(@Request() req) {
