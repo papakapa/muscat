@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import {IArtist} from "../../core/interfaces/IArtist";
+import { StyledArtist, StyledArtistPoster, StyledArtistPosterWrapper, StyledArtistTitle } from "./StyledArtist";
 
 interface ArtistProps {
   artist: IArtist;
@@ -8,14 +9,14 @@ interface ArtistProps {
 
 const Artist = ({artist}: ArtistProps) => {
   return (
-    <div>
-      <div>
-        <img src={artist.avatar} alt={`avatar of ${artist.nickName}`}/>
-      </div>
-      <div>
+    <StyledArtist>
+      <StyledArtistPosterWrapper>
+        <StyledArtistPoster src={artist.avatar} alt={`avatar of ${artist.nickName}`}/>
+      </StyledArtistPosterWrapper>
+      <StyledArtistTitle>
         <NavLink to={`/home/artist/${artist._id}`}>{artist.nickName}</NavLink>
-      </div>
-    </div>
+      </StyledArtistTitle>
+    </StyledArtist>
   );
 };
 
