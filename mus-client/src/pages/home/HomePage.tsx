@@ -8,6 +8,8 @@ import CreatePlaylist from "../../module/playlists/CreatePlaylist";
 import ArtistList from "../../module/artist/ArtistList";
 import ArtistInfo from "../../module/artist/ArtistInfo";
 import AlbumInfo from "../../module/album/AlbumInfo";
+import Search from "../../module/search/Search";
+import Profile from "../../module/profile/Profile";
 
 const HomePage = () => {
   return (
@@ -17,6 +19,8 @@ const HomePage = () => {
         <NavLink to='/home/music'>Music List</NavLink>
         <NavLink to='/home/playlists'>Playlists</NavLink>
         <NavLink to='/home/artists'>Artists</NavLink>
+        <NavLink to='/home/search'>Search</NavLink>
+        <NavLink to='/home/profile'>Profile</NavLink>
       </nav>
       Home Page, you authorized
       <Switch>
@@ -34,6 +38,12 @@ const HomePage = () => {
         </Route>
         <Route path='/home/artists'>
           <ArtistList />
+        </Route>
+        <Route path='/home/search'>
+          <Search />
+        </Route>
+        <Route path='/home/profile'>
+          <Profile />
         </Route>
         <Route path='/home/artist/:id' component={ArtistInfo} />
         <Route path='/home/album/:id' component={AlbumInfo} />

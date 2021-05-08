@@ -6,7 +6,7 @@ import {
   SET_SIGN_IN_STAGE,
   SET_SIGN_STAGE,
 } from './auth.types';
-import { IUserToCreate } from '../../core/interfaces/IUser';
+import {IUser, IUserToCreate} from '../../core/interfaces/IUser';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '../index';
 import axios from 'axios';
@@ -19,7 +19,7 @@ export const setAuthStage = (authStage: string): AuthTypes => ({type: SET_AUTH_S
 export const setSignStage = (signStage: string): AuthTypes => ({type: SET_SIGN_STAGE, payload: signStage});
 export const setSignInStage = (signInStage: number): AuthTypes => ({type: SET_SIGN_IN_STAGE, payload: signInStage});
 export const setCurrentLogin = (login: string): AuthTypes => ({type: SET_CURRENT_LOGIN, payload: login});
-export const setCurrentUser = (user: IUserToCreate): AuthTypes => ({type: SET_CURRENT_USER, payload: user});
+export const setCurrentUser = (user: IUser): AuthTypes => ({type: SET_CURRENT_USER, payload: user});
 
 export const signUp = (user: IUserToCreate): ThunkAction<any, RootState, any, any> => async dispatch => {
   console.log(user);
@@ -90,4 +90,7 @@ export const validateToken = (): ThunkAction<any, RootState, any, any> => async 
   }
 };
 
-
+export const getUserAPI = (login: string): ThunkAction<any, any, any, any> => async dispatch => {
+  const res = await axios.post(backRoutes.getUser, {login});
+  res.data && dispatch(setCurrentUser(res.data));
+};

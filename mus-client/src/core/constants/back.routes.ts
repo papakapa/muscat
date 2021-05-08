@@ -3,6 +3,7 @@ export const backRoutes = {
   validateLogin: 'http://localhost:7777/auth/check',
   signIn: 'http://localhost:7777/auth/signIn',
   signUp: 'http://localhost:7777/auth/signUp',
+  getUser: 'http://localhost:7777/auth/user',
   createArtist: 'http://localhost:7777/artist/create',
   getArtists: 'http://localhost:7777/artist/all',
   createTrack: 'http://localhost:7777/track/create',
@@ -12,5 +13,6 @@ export const backRoutes = {
   deleteLikedTrack: 'http://localhost:7777/track/unlike',
   getPlaylists: 'http://localhost:7777/playlist/all',
   createPlaylist: 'http://localhost:7777/playlist/create',
-  getAlbums: 'http://localhost:7777/album/all'
+  getAlbums: 'http://localhost:7777/album/all',
+  search: 'http://localhost:7777/search'
 }
