@@ -7,7 +7,9 @@
 - [x] Player Progress Bar
 - [x] Playlist
 - [x] Liked Tracks
-- [ ] Search
-- [ ] User Cabinet 
+- [x] Search
+- [x] User Cabinet 
 - [x] Artist
 - [x] Albums
+- [ ] Fix Bugs/ Routes
+- [ ] More func for cab/album/playlist
