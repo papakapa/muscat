@@ -10,6 +10,7 @@ import ArtistInfo from "../../module/artist/ArtistInfo";
 import AlbumInfo from "../../module/album/AlbumInfo";
 import Search from "../../module/search/Search";
 import Profile from "../../module/profile/Profile";
+import { HomeFooter } from './StyledHome';
 
 const HomePage = () => {
   return (
@@ -48,7 +49,7 @@ const HomePage = () => {
         <Route path='/home/artist/:id' component={ArtistInfo} />
         <Route path='/home/album/:id' component={AlbumInfo} />
       </Switch>
-      <Player />
+      <HomeFooter><Player /></HomeFooter>
     </div>
   );
 };
