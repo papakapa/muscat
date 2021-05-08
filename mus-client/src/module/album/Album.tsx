@@ -1,6 +1,7 @@
 import React from "react";
 import {IAlbum} from "../../core/interfaces/IAlbum";
 import {NavLink} from "react-router-dom";
+import {StyledAlbum, StyledAlbumPoster, StyledAlbumPosterWrapper, StyledAlbumTitle} from "./StyledAlbum";
 
 interface AlbumProps {
   album: IAlbum;
@@ -8,14 +9,14 @@ interface AlbumProps {
 
 const Album = ({album}: AlbumProps) => {
   return (
-    <div>
-      <div>
-        <img src={album.poster} alt={`poster of ${album.title}`}/>
-      </div>
-      <div>
+    <StyledAlbum>
+      <StyledAlbumPosterWrapper>
+        <StyledAlbumPoster src={album.poster} alt={`poster of ${album.title}`}/>
+      </StyledAlbumPosterWrapper>
+      <StyledAlbumTitle>
         <NavLink to={`/home/album/${album._id}`}>{album.title}</NavLink>
-      </div>
-    </div>
+      </StyledAlbumTitle>
+    </StyledAlbum>
   );
 };
 

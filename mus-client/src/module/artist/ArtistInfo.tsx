@@ -6,7 +6,9 @@ import {ITrack} from "../../core/interfaces/ITrack";
 import {getAllTracks} from "../../redux/track/track.selectors";
 import {IAlbum} from "../../core/interfaces/IAlbum";
 import Album from "../album/Album";
-import {StyledArtistInfo, StyledArtistInfoPoster, StyledArtistInfoSection, StyledArtistInfoTracks} from "./StyledArtistInfo";
+import {StyledArtistInfo,
+  StyledArtistInfoAlbums,
+  StyledArtistInfoPoster, StyledArtistInfoSection, StyledArtistInfoTracks} from "./StyledArtistInfo";
 
 const ArtistInfo = (props : any) => {
   const artists = useSelector(getAllArtists);
@@ -49,9 +51,9 @@ const ArtistInfo = (props : any) => {
       <StyledArtistInfoTracks>
         {rerenderTracks()}
       </StyledArtistInfoTracks>
-      <div>
+      <StyledArtistInfoAlbums>
         {rerenderAlbums()}
-      </div>
+      </StyledArtistInfoAlbums>
       <div>
 
       </div>

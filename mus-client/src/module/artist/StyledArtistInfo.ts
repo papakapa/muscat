@@ -27,3 +27,12 @@ export const StyledArtistInfoTracks = styled.div`
    width:80%;
    margin: 10px auto;
 `;
+
+export const StyledArtistInfoAlbums = styled.div`
+   width:80%;
+   margin: 10px auto;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   align-items: flex-start;
+`;
