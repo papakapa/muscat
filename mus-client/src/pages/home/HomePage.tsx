@@ -10,11 +10,11 @@ import ArtistInfo from "../../module/artist/ArtistInfo";
 import AlbumInfo from "../../module/album/AlbumInfo";
 import Search from "../../module/search/Search";
 import Profile from "../../module/profile/Profile";
-import { HomeFooter } from './StyledHome';
+import { HomeFooter, HomeWrapper } from './StyledHome';
 
 const HomePage = () => {
   return (
-    <div>
+    <HomeWrapper>
       <nav>
         <NavLink to='/home/upload'>To upload</NavLink>
         <NavLink to='/home/music'>Music List</NavLink>
@@ -50,7 +50,7 @@ const HomePage = () => {
         <Route path='/home/album/:id' component={AlbumInfo} />
       </Switch>
       <HomeFooter><Player /></HomeFooter>
-    </div>
+    </HomeWrapper>
   );
 };
 
