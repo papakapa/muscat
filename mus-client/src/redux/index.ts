@@ -7,6 +7,7 @@ import trackReducer from './track/track.reducer';
 import playerReducer from "./player/player.reducer";
 import playlistReducer from "./playlist/playlists.reducer";
 import albumReducer from "./album/album.reducer";
+import searchReducer from "./search/search.reducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   player: playerReducer,
   playlists: playlistReducer,
   albums: albumReducer,
+  search: searchReducer
 });
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

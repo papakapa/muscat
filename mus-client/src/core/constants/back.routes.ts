@@ -12,5 +12,6 @@ export const backRoutes = {
   deleteLikedTrack: 'http://localhost:7777/track/unlike',
   getPlaylists: 'http://localhost:7777/playlist/all',
   createPlaylist: 'http://localhost:7777/playlist/create',
-  getAlbums: 'http://localhost:7777/album/all'
+  getAlbums: 'http://localhost:7777/album/all',
+  search: 'http://localhost:7777/search'
 }
