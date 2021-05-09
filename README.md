@@ -2,14 +2,13 @@
 
 ##Todo
 
-- [ ] Styled App 
 - [ ] Player volume
-- [x] Player Progress Bar
-- [x] Playlist
-- [x] Liked Tracks
-- [x] Search
-- [x] User Cabinet 
-- [x] Artist
-- [x] Albums
 - [ ] Fix Bugs/ Routes
 - [ ] More func for cab/album/playlist
+- [x] Styled Profile
+- [x] Styled uploaders
+- [x] Styled Search
+- [x] Styled Create playlist
+- [ ] Add playlist info
+- [ ] Add playlist update
+- [ ] Add profile update

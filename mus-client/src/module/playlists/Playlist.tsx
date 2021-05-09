@@ -1,5 +1,6 @@
 import React from "react";
 import {IPlaylist} from "../../core/interfaces/IPlaylist";
+import {StyledPlaylist, StyledPlaylistPoster, StyledPlaylistPosterWrapper, StyledPlaylistTitle} from "./StyledPlaylist";
 
 interface PlaylistProps {
   playlist: IPlaylist;
@@ -7,14 +8,14 @@ interface PlaylistProps {
 
 const Playlist = ({playlist}: PlaylistProps) => {
   return (
-    <div>
-      <div>
-        <img src={playlist.poster} alt={`poster of ${playlist.title}`}/>
-      </div>
-      <div>
+    <StyledPlaylist>
+      <StyledPlaylistPosterWrapper>
+        <StyledPlaylistPoster src={playlist.poster} alt={`poster of ${playlist.title}`}/>
+      </StyledPlaylistPosterWrapper>
+      <StyledPlaylistTitle>
         <h1>{playlist.title}</h1>
-      </div>
-    </div>
+      </StyledPlaylistTitle>
+    </StyledPlaylist>
   );
 };
 

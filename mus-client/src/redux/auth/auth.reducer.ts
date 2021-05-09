@@ -9,7 +9,8 @@ const initialState: AuthState = {
     firstName: '',
     login: '',
     password: '',
-    secondName: ''
+    secondName: '',
+    tracks: []
   },
   signInStage: 1,
   signStage: 'signIn'

@@ -1,6 +1,16 @@
 import React, {useCallback, useMemo} from 'react';
 import {ITrack} from '../../../core/interfaces/ITrack';
-import {StyledTrack, StyledTrackAuthor, StyledTrackInfo, StyledTrackName, StyledTrackPoster, StyledTrackTitle} from './StyledTrack';
+import {
+  StyledLike,
+  StyledTrack,
+  StyledTrackAuthor,
+  StyledTrackIcon,
+  StyledTrackInfo,
+  StyledTrackName,
+  StyledTrackPoster,
+  StyledTrackSection,
+  StyledTrackTitle, StyledUnLike
+} from './StyledTrack';
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentTrackId, getIsPlaying} from "../../../redux/player/player.selectors";
 import {
@@ -36,7 +46,7 @@ const Track: React.FC<TrackProps> = ({track, order}) => {
       return isCurrentPlaying;
     }
     return false;
-  },[isEqualCurrent, isCurrentPlaying]);
+  }, [isEqualCurrent, isCurrentPlaying]);
   const isLiked = useMemo(() => likedTracks.findIndex(el => el._id === track._id) !== -1, [likedTracks, track]);
   const onPlay = () => {
     if (!isEqualCurrent) {
@@ -56,25 +66,28 @@ const Track: React.FC<TrackProps> = ({track, order}) => {
   const onLike = () => {
     dispatch(addLikeTrack(track, currentLogin, likedTracks));
   };
-
   const onUnLike = () => dispatch(deleteLikedTrack(track, currentLogin, likedTracks));
 
   return (
     <StyledTrack>
+      <StyledTrackSection>
+        <div>
+          {!isPlaying &&
+          <StyledTrackIcon className='material-icons' onClick={onPlay}>play_circle_filled</StyledTrackIcon>}
+          {isPlaying &&
+          <StyledTrackIcon className='material-icons' onClick={onStop}>pause_circle_filled</StyledTrackIcon>}
+        </div>
+        <StyledTrackInfo>
+          <StyledTrackPoster src={getPoster()} alt='posterTrack'/>
+          <StyledTrackTitle>
+            <StyledTrackAuthor>{getName()}</StyledTrackAuthor>
+            <StyledTrackName>{getAuthor()}</StyledTrackName>
+          </StyledTrackTitle>
+        </StyledTrackInfo>
+      </StyledTrackSection>
       <div>
-        {!isPlaying &&  <button onClick={onPlay}>play</button>}
-        {isPlaying && <button onClick={onStop}>stop</button>}
-      </div>
-      <StyledTrackInfo>
-        <StyledTrackPoster src={getPoster()} alt='posterTrack'/>
-        <StyledTrackTitle>
-          <StyledTrackAuthor>{getName()}</StyledTrackAuthor>
-          <StyledTrackName>{getAuthor()}</StyledTrackName>
-        </StyledTrackTitle>
-      </StyledTrackInfo>
-      <div>
-        {!isLiked && <button onClick={onLike}>like</button>}
-        {isLiked && <button onClick={onUnLike}>unlike</button>}
+        {!isLiked && <StyledLike className='material-icons' onClick={onLike}>favorite</StyledLike>}
+        {isLiked && <StyledUnLike className='material-icons' onClick={onUnLike}>favorite</StyledUnLike>}
       </div>
     </StyledTrack>
   );

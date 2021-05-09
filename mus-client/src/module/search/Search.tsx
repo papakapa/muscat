@@ -11,6 +11,7 @@ import Album from "../album/Album";
 import {IAlbum} from "../../core/interfaces/IAlbum";
 import {IArtist} from "../../core/interfaces/IArtist";
 import Artist from "../artist/Artist";
+import { StyledSearch, StyledSearchAlbums, StyledSearchArtists, StyledSearchPlaylists, StyledSearchTracks } from "./StyledSearch";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -60,16 +61,20 @@ const Search = () => {
   }, [searchResults]);
 
   return (
-    <div>
+    <StyledSearch>
       <form onSubmit={handleSubmit(onSearch)}>
-      <input type='text' name='search' ref={register({required: true})} placeholder='search...'/>
-      <button>Search</button>
+        <div className="input-group mb-3">
+          <input type="text" className="form-control" placeholder="Search..."
+                 name='search' ref={register({required: true})}
+                 aria-label="Search" aria-describedby="button-addon2" />
+            <button className="btn btn-outline-secondary" id="button-addon2">Search</button>
+        </div>
       </form>
-      <div>{rerenderTracks()}</div>
-      <div>{rerenderPlaylists()}</div>
-      <div>{rerenderArtist()}</div>
-      <div>{rerenderAlbums()}</div>
-    </div>
+      <StyledSearchTracks>{rerenderTracks()}</StyledSearchTracks>
+      <StyledSearchPlaylists>{rerenderPlaylists()}</StyledSearchPlaylists>
+      <StyledSearchArtists>{rerenderArtist()}</StyledSearchArtists>
+      <StyledSearchAlbums>{rerenderAlbums()}</StyledSearchAlbums>
+    </StyledSearch>
   );
 };
 

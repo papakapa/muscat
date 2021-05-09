@@ -18,7 +18,7 @@ const AuthPage = () => {
       <Route path={clientRoutes.AUTH_SIGN_IN}>
         <SignIn />
       </Route>
-      <Route path={clientRoutes.AUTH_SIGN_IN}>
+      <Route path={clientRoutes.AUTH_SIGN_UP}>
         <SignUp />
       </Route>
     </Switch>

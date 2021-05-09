@@ -10,7 +10,10 @@ import {
 } from "../../redux/player/player.selectors";
 import {setCurrentTrack, setIsPlaying, setPLayerTrackState} from "../../redux/player/player.actions";
 import {PlayerStateEnum} from "../../core/enums/player-state.enum";
-import {StyledProgress, StyledProgressBar } from "./StyledPlayer";
+import {StyledPlayer, StyledPlayerControls,
+  StyledPlayerIcon,
+  StyledPlayerMainControls, StyledPlayerTools, StyledProgress, StyledProgressBar, StyledTrackWrapper } from "./StyledPlayer";
+import PlayerTrack from "./PlayerTrack";
 
 let audio = new Audio();
 
@@ -24,6 +27,13 @@ const Player = () => {
   const isLast = useSelector(getIsLast);
   const isFirst = useSelector(getIsFirst);
   const currentIndex= useSelector(getCurrentIndex);
+
+  const rerenderTrack = useCallback(() => {
+    if (track) {
+      return <PlayerTrack track={track} key={track._id + 'player'}/>
+    }
+    return null;
+  }, [track]);
 
   const onPlay = useCallback(() => {
     if (track) {
@@ -92,22 +102,25 @@ const Player = () => {
   if (!track) return null;
 
   return (
-    <div>
-     <div>
-
-     </div>
-      <div>
-        <div>
-          <button onClick={onPrev}>prev</button>
-          {isPlaying ? <button onClick={onStop}>stop</button>
-                     : <button onClick={onPlay}>play</button>}
-          <button onClick={onNext}>next</button>
-        </div>
+    <StyledPlayer>
+     <StyledTrackWrapper>
+       {rerenderTrack()}
+     </StyledTrackWrapper>
+      <StyledPlayerControls>
+        <StyledPlayerMainControls>
+          <StyledPlayerIcon  className='material-icons' onClick={onPrev}>skip_previous</StyledPlayerIcon>
+          {isPlaying ? <StyledPlayerIcon  className='material-icons' onClick={onStop}>pause_circle_filled</StyledPlayerIcon>
+            : <StyledPlayerIcon className="material-icons" onClick={onPlay}>play_circle_filled</StyledPlayerIcon>}
+          <StyledPlayerIcon  className='material-icons' onClick={onNext}>skip_next</StyledPlayerIcon>
+        </StyledPlayerMainControls>
         <StyledProgressBar id='pb' onClick={onProgressClick}>
           <StyledProgress id='pg'/>
         </StyledProgressBar>
-      </div>
-    </div>
+      </StyledPlayerControls>
+      <StyledPlayerTools>
+        Tools
+      </StyledPlayerTools>
+    </StyledPlayer>
   );
 
 };

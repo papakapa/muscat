@@ -3,6 +3,13 @@ import {ITrack} from "../../core/interfaces/ITrack";
 import {useDispatch, useSelector} from "react-redux";
 import {getCreatePlaylistTracks} from "../../redux/playlist/playlists.selector";
 import {addTrackToPlaylist, deleteTrackFromPlaylist} from "../../redux/playlist/playlists.actions";
+import {
+  StyledCreateTrack,
+  StyledCreateTrackArtist,
+  StyledCreateTrackIcon,
+  StyledCreateTrackInfo,
+  StyledCreateTrackTitle
+} from "./StyledCreatePlaylistTrack";
 
 interface PlaylistCreateTrackProps {
   track: ITrack;
@@ -23,16 +30,16 @@ const PlaylistCreateTrack = ({track}: PlaylistCreateTrackProps) => {
  };
 
   return (
-    <div>
+    <StyledCreateTrack>
+      <StyledCreateTrackInfo>
+        <StyledCreateTrackTitle>{track.title}</StyledCreateTrackTitle>
+        <StyledCreateTrackArtist>{track.artist}</StyledCreateTrackArtist>
+      </StyledCreateTrackInfo>
       <div>
-        <h1>{track.title}</h1>
-        <h1>{track.artist}</h1>
+        {!isSelected && <StyledCreateTrackIcon className="material-icons" onClick={onAdd}>add_circle_outline</StyledCreateTrackIcon>}
+        {isSelected && <StyledCreateTrackIcon className="material-icons" onClick={onRemove}>remove_circle_outline</StyledCreateTrackIcon>}
       </div>
-      <div>
-        {!isSelected && <button onClick={onAdd}>add</button>}
-        {isSelected && <button onClick={onRemove}>remove</button>}
-      </div>
-    </div>
+    </StyledCreateTrack>
   );
 };
 

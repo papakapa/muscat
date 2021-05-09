@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import {useSelector} from "react-redux";
 import {getAllPlaylists} from "../../redux/playlist/playlists.selector";
 import Playlist from "./Playlist";
+import { StyledPlaylistList } from "./StyledPlaylistList";
 
 const PlaylistList = () => {
   const playlists = useSelector(getAllPlaylists);
@@ -15,12 +16,12 @@ const PlaylistList = () => {
   }, [playlists]);
 
   return (
-    <div>
-      <NavLink to={'/home/createPlaylist'}>Create Playlist</NavLink>
+    <StyledPlaylistList>
       <div>
-        {rerenderPlaylists()}
+      <NavLink to={'/home/createPlaylist'}>Create Playlist</NavLink>
       </div>
-    </div>
+        {rerenderPlaylists()}
+    </StyledPlaylistList>
   );
 };
 

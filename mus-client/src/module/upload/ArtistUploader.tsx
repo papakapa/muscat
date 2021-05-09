@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { uploadContent } from '../../firebase/firebase.utils';
 import { useDispatch } from 'react-redux';
 import { addArtistToDb } from '../../redux/artist/artist.actions';
+import { StyledUploaderForm } from './StyledUploader';
 
 const ArtistUploader = () => {
   const dispatch = useDispatch();
@@ -29,15 +30,33 @@ const ArtistUploader = () => {
   };
 
   return (
-    <div>
+    <StyledUploaderForm>
       <form onSubmit={handleSubmit(onAddArtist)}>
-        <input type='file' onChange={handleOnPosterLoad}/>
-        <div>
-          <input type='text' name='nickName' ref={register({required: true})} autoComplete='off' placeholder='Enter artist name'/>
+        <div className="mb-3">
+          <label htmlFor="formFile" className="form-label">Choose artist image</label>
+          <input
+            className="form-control"
+            id="formFile"
+            type="file"
+            onChange={handleOnPosterLoad}
+            accept="image/*"
+          />
         </div>
-        <button type='submit'>Add artist</button>
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label">Artist name</label>
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            name='nickName'
+            ref={register({required: true})}
+            autoComplete='off'
+            placeholder="Enter artist nickname"
+          />
+        </div>
+        <button type="submit" className="btn btn-success" disabled={isLoading}>Add artist</button>
       </form>
-    </div>
+    </StyledUploaderForm>
   );
 };
 

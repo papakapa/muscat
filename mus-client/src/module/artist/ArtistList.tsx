@@ -2,6 +2,7 @@ import React, {useCallback} from "react";
 import {useSelector} from "react-redux";
 import {getAllArtists} from "../../redux/artist/artist.selector";
 import Artist from "./Artist";
+import { StyledArtistList } from "./StyledArtistList";
 
 const ArtistList = () => {
   const artists = useSelector(getAllArtists);
@@ -14,9 +15,9 @@ const ArtistList = () => {
   }, [artists]);
 
   return (
-    <div>
+    <StyledArtistList>
       {rerenderArtists()}
-    </div>
+    </StyledArtistList>
   );
 };
 
