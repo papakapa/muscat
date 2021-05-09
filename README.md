@@ -8,7 +8,7 @@
 - [x] Styled Profile
 - [x] Styled uploaders
 - [x] Styled Search
-- [ ] Styled Create playlist
+- [x] Styled Create playlist
 - [ ] Add playlist info
 - [ ] Add playlist update
 - [ ] Add profile update

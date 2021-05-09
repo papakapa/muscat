@@ -6,6 +6,7 @@ import {getAllTracks} from "../../redux/track/track.selectors";
 import {getCreatePlaylistTracks} from "../../redux/playlist/playlists.selector";
 import PlaylistCreateTrack from "./PlaylistCreateTrack";
 import {createPlaylist} from "../../redux/playlist/playlists.actions";
+import { StyledCreatePlaylist, StyledCreatePlaylistTracks, StyledPlaylistForm } from "./StyledCreatePlaylist";
 
 const CreatePlaylist = () => {
   const dispatch = useDispatch();
@@ -44,22 +45,35 @@ const CreatePlaylist = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onPlaylistCreate)}>
-        <input type='file' onChange={handleOnPosterLoad} accept="image/*"/>
-        <input
-          name='title'
-          type='text'
-          ref={register({required: true})}
-          autoComplete='off'
-          placeholder='Playlist title'
-        />
-        <div>
-          {rerenderTracks()}
+    <StyledCreatePlaylist>
+      <StyledPlaylistForm onSubmit={handleSubmit(onPlaylistCreate)}>
+        <div className="mb-3">
+          <label htmlFor="formFile" className="form-label">Choose playlist poster</label>
+          <input
+            className="form-control"
+            id="formFile"
+            type="file"
+            onChange={handleOnPosterLoad}
+            accept="image/*"
+          />
         </div>
-        <button type='submit'>Create</button>
-      </form>
-    </div>
+        <div className="mb-3">
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            name='title'
+            ref={register({required: true})}
+            autoComplete='off'
+            placeholder="Enter playlist title"
+          />
+        </div>
+        <StyledCreatePlaylistTracks>
+          {rerenderTracks()}
+        </StyledCreatePlaylistTracks>
+        <button type="submit" className="btn btn-success">Create</button>
+      </StyledPlaylistForm>
+    </StyledCreatePlaylist>
   );
 };
 

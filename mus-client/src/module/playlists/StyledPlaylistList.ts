@@ -9,4 +9,9 @@ export const StyledPlaylistList = styled.div`
   flex-wrap: wrap;
   align-items: center;
   padding: 15px 50px;
+  
+  & a {
+    text-decoration: none;
+    color: #14F014;
+  }
 `;
