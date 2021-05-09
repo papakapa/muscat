@@ -1,3 +1,5 @@
+import {ITrack} from "./ITrack";
+
 export interface IUserToCreate {
   firstName: string;
   secondName: string;
@@ -13,4 +15,5 @@ export interface IUser {
   login: string;
   email: string;
   password: string;
+  tracks: ITrack[];
 }
