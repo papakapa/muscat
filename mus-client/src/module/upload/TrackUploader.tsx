@@ -3,6 +3,7 @@ import {uploadContent} from "../../firebase/firebase.utils";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {addTrackToDb} from "../../redux/track/track.actions";
+import { StyledUploaderForm } from './StyledUploader';
 
 const TrackUploader = () => {
   const dispatch = useDispatch();
@@ -43,27 +44,55 @@ const TrackUploader = () => {
   };
 
   return (
-    <div>
+    <StyledUploaderForm>
       <form onSubmit={handleSubmit(onTrackAdd)}>
-        <input type='file' onChange={handleOnTrackLoad} accept="audio/*"/>
-        <input type='file' onChange={handleOnPosterLoad} accept="image/*"/>
-        <input
-          name='title'
-          type='text'
-          ref={register({required: true})}
-          autoComplete='off'
-          placeholder='track title'
-        />
-        <input
-          name='artist'
-          type='text'
-          ref={register({required: true})}
-          autoComplete='off'
-          placeholder='track artist'
-        />
-        <button type='submit' disabled={isTrackLoading || isImageLoading}>Add track</button>
+        <div className="mb-3">
+          <label htmlFor="formFile" className="form-label">Choose track</label>
+          <input
+            className="form-control"
+            id="formFile"
+            type="file"
+            onChange={handleOnTrackLoad}
+            accept="audio/*"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="formFile" className="form-label">Choose track poster</label>
+          <input
+            className="form-control"
+            id="formFile"
+            type="file"
+            onChange={handleOnPosterLoad}
+            accept="image/*"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label">Track title</label>
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            name='title'
+            ref={register({required: true})}
+            autoComplete='off'
+            placeholder="Enter track title"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="artist" className="form-label">Track Artist</label>
+          <input
+            type="text"
+            className="form-control"
+            id="artist"
+            placeholder="Enter track artist"
+            name='artist'
+            ref={register({required: true})}
+            autoComplete='off'
+          />
+        </div>
+        <button type="submit" className="btn btn-success" disabled={isTrackLoading || isImageLoading}>Add track</button>
       </form>
-    </div>
+    </StyledUploaderForm>
   );
 };
 

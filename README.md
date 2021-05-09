@@ -5,9 +5,9 @@
 - [ ] Player volume
 - [ ] Fix Bugs/ Routes
 - [ ] More func for cab/album/playlist
-- [ ] Styled Profile
-- [ ] Styled uploaders
-- [ ] Styled Search
+- [x] Styled Profile
+- [x] Styled uploaders
+- [x] Styled Search
 - [ ] Styled Create playlist
 - [ ] Add playlist info
 - [ ] Add playlist update
