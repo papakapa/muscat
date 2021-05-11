@@ -48,3 +48,17 @@ export const StyledProgress = styled.div`
 export const StyledPlayerTools = styled.div`
   min-width: 200px;
 `;
+
+export const StyledPlayerVolume= styled.div`
+  width: 100px;
+  height: 8px;
+  cursor: pointer;
+  border-radius: 18px;
+  background: #B8ABC4;
+`;
+
+export const StyledPlayerVolumeProgress = styled.div`
+  height: 8px;
+  border-radius: 18px;
+  background: black;
+`;
