@@ -37,6 +37,11 @@ export const signUp = (user: IUserToCreate): ThunkAction<any, RootState, any, an
   }
 };
 
+export const updateUserAPI = (user: IUser):ThunkAction<any, any, any, any> => async dispatch => {
+  const res = await axios.post(backRoutes.updateUser, {user});
+  res.data && dispatch(setCurrentUser(user));
+};
+
 export const checkLogin = (login: string): ThunkAction<any, RootState, any, any> => async dispatch => {
   const res = await axios.post(backRoutes.validateLogin, {login: login});
   if (res.data) {

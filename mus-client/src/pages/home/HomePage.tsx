@@ -11,6 +11,7 @@ import {HomeContent, HomeFooter, HomeWrapper} from './StyledHome';
 import Header from "./Header";
 import MainPage from "./MainPage";
 import PlaylistInfo from "../../module/playlists/PlaylistInfo";
+import UpdateProfile from "../../module/profile/UpdateProfile";
 
 const HomePage = () => {
   return (
@@ -32,6 +33,9 @@ const HomePage = () => {
           </Route>
           <Route path='/home/profile'>
             <Profile/>
+          </Route>
+          <Route path={'/home/updateUser'}>
+            <UpdateProfile />
           </Route>
           <Route path='/home/artist/:id' component={ArtistInfo}/>
           <Route path='/home/album/:id' component={AlbumInfo}/>

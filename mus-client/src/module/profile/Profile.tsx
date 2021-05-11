@@ -5,6 +5,7 @@ import {getUserAPI} from "../../redux/auth/auth.actions";
 import Track from "../track/components/Track";
 import {
   StyledBasicData,
+  StyledBasicEdit,
   StyledBasicField,
   StyledBasicHeader,
   StyledBasicLabel,
@@ -13,6 +14,7 @@ import {
   StyledProfile,
   StyledProfileTracks
 } from "./StyledProfile";
+import { NavLink } from "react-router-dom";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -57,6 +59,9 @@ const Profile = () => {
             <StyledBasicText>{user && user.email}</StyledBasicText>
           </StyledBasicField>
         </StyledBasicData>
+        <StyledBasicEdit>
+          <p>Want to <NavLink to={'/home/updateUser'}>edit</NavLink> profile ?</p>
+        </StyledBasicEdit>
       </StyledBasicWrapper>
       <StyledProfileTracks>
         {rerenderTracks()}
