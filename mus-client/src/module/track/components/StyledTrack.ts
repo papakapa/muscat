@@ -7,6 +7,12 @@ export const StyledTrack = styled.div`
   justify-content: space-between;
   width: 100%;
   margin: 25px 15px;
+  border: 0;
+  border-radius: 17px;
+  padding: 10px;
+  &:hover {
+    background: #cccccc;
+  }
 `;
 
 export const StyledTrackSection = styled.div`

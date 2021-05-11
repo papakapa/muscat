@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import {IPlaylist} from "../../core/interfaces/IPlaylist";
 import {StyledPlaylist, StyledPlaylistPoster, StyledPlaylistPosterWrapper, StyledPlaylistTitle} from "./StyledPlaylist";
 
@@ -13,7 +14,7 @@ const Playlist = ({playlist}: PlaylistProps) => {
         <StyledPlaylistPoster src={playlist.poster} alt={`poster of ${playlist.title}`}/>
       </StyledPlaylistPosterWrapper>
       <StyledPlaylistTitle>
-        <h1>{playlist.title}</h1>
+        <NavLink to={`/home/playlist/${playlist._id}`}>{playlist.title}</NavLink>
       </StyledPlaylistTitle>
     </StyledPlaylist>
   );

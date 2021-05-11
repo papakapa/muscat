@@ -24,8 +24,8 @@ const Header = () => {
   return (
     <StyledHeader>
       <StyledHeaderLogo>
-        <StyledLogoPrimary>Mus</StyledLogoPrimary>
-        <StyledLogoSecondary>Cat</StyledLogoSecondary>
+        <StyledLogoPrimary><NavLink to={'/home'}>Mus</NavLink></StyledLogoPrimary>
+        <StyledLogoSecondary><NavLink to={'/home'}>Cat</NavLink></StyledLogoSecondary>
       </StyledHeaderLogo>
       <StyledHeaderNavigation>
         <NavLink to='/home/profile' activeClassName='active-link'>Profile</NavLink>

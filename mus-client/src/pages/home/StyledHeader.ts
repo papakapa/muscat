@@ -21,11 +21,21 @@ export const StyledHeaderLogo = styled.div`
 export const StyledLogoPrimary = styled.h1`
   font-size: 26px;
   color: black;
+  & a {
+    font-size: 26px;
+    color: black;
+    text-decoration: none;
+  }
 `;
 
 export const StyledLogoSecondary = styled.h1`
   font-size: 26px;
   color: #B8ABC4;
+  & a {
+    font-size: 26px;
+    color: #B8ABC4;
+    text-decoration: none;
+  }
 `;
 
 export const StyledHeaderNavigation = styled.div`

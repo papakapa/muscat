@@ -12,7 +12,9 @@ import {setCurrentTrack, setIsPlaying, setPLayerTrackState} from "../../redux/pl
 import {PlayerStateEnum} from "../../core/enums/player-state.enum";
 import {StyledPlayer, StyledPlayerControls,
   StyledPlayerIcon,
-  StyledPlayerMainControls, StyledPlayerTools, StyledProgress, StyledProgressBar, StyledTrackWrapper } from "./StyledPlayer";
+  StyledPlayerMainControls, StyledPlayerTools, StyledPlayerVolume,
+  StyledPlayerVolumeProgress,
+  StyledProgress, StyledProgressBar, StyledTrackWrapper } from "./StyledPlayer";
 import PlayerTrack from "./PlayerTrack";
 
 let audio = new Audio();
@@ -20,6 +22,7 @@ let audio = new Audio();
 const Player = () => {
   const dispatch = useDispatch();
   const [time, setTime] = useState(0);
+  const [volume, setVolume] = useState(1);
   const track = useSelector(getCurrentTrack);
   const trackState = useSelector(getPlayerTrackState);
   const order = useSelector(getCurrentOrder);
@@ -27,13 +30,20 @@ const Player = () => {
   const isLast = useSelector(getIsLast);
   const isFirst = useSelector(getIsFirst);
   const currentIndex= useSelector(getCurrentIndex);
-
+  const volumeProgress = document.getElementById('vp');
   const rerenderTrack = useCallback(() => {
     if (track) {
       return <PlayerTrack track={track} key={track._id + 'player'}/>
     }
     return null;
   }, [track]);
+
+  useEffect(() => {
+    if (volumeProgress) {
+      audio.volume = volume;
+      volumeProgress.style.width = volume * 100 + 'px';
+    }
+  }, [volumeProgress, volume]);
 
   const onPlay = useCallback(() => {
     if (track) {
@@ -70,6 +80,15 @@ const Player = () => {
     dispatch(setIsPlaying(true));
     dispatch(setPLayerTrackState(PlayerStateEnum.STARTED));
   },[dispatch, order, currentIndex, isFirst]);
+
+  const onVolumeClick = (e: any) => {
+    let volumeBar = document.getElementById('vm');
+    if (volumeBar) {
+      let x = e.pageX - volumeBar.offsetLeft;
+      let progress = x / volumeBar.offsetWidth;
+      setVolume(progress);
+    }
+  }
 
   const onProgressClick = (event: any) => {
     let line = document.getElementById('pb');
@@ -118,7 +137,9 @@ const Player = () => {
         </StyledProgressBar>
       </StyledPlayerControls>
       <StyledPlayerTools>
-        Tools
+        <StyledPlayerVolume id='vm' onClick={onVolumeClick}>
+          <StyledPlayerVolumeProgress id='vp'/>
+        </StyledPlayerVolume>
       </StyledPlayerTools>
     </StyledPlayer>
   );
