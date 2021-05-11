@@ -54,9 +54,6 @@ const ArtistInfo = (props : any) => {
       <StyledArtistInfoAlbums>
         {rerenderAlbums()}
       </StyledArtistInfoAlbums>
-      <div>
-
-      </div>
     </StyledArtistInfo>
   );
 };
