@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtAuthGuard } from './guards/jwt.guard';
+import {ExceptedUserDto} from "../user/dto/excepted-user.dto";
 
 @Controller('auth')
 export class AuthController {
@@ -34,5 +35,10 @@ export class AuthController {
   @Get('isAuth')
   validateToken(@Request() req) {
     return req.user;
+  }
+
+  @Post('update')
+  async updateUser(@Body('user') user: ExceptedUserDto) {
+    return this.authService.updateUser(user);
   }
 }

@@ -43,6 +43,10 @@ export const StyledBasicText = styled.p`
   font-weight: normal;
 `;
 
+export const StyledBasicEdit = styled.div`
+    margin-left: 8px;
+`;
+
 export const StyledProfileTracks = styled.div`
   width: 80%;
   margin: 0 auto;
